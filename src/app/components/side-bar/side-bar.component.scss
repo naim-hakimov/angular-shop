@@ -1,0 +1,25 @@
+@import "../../../assets/scss/colors";
+
+.s-bar {
+  width: 200px;
+  background: $blue;
+  color: $white;
+  height: 100vh;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__link {
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: .4;
+    }
+  }
+}

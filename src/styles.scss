@@ -1,14 +1,10 @@
-*:not(.angular-editor-wrapper) {
+* {
   padding: 0;
   margin: 0;
+  font-family: Roboto, sans-serif;
 }
 
 .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 15px 15px 0 15px;
-}
-
-.angular-editor-textarea {
-  padding: 10px 20px !important;
+  width: 100%;
+  padding: 0 20px;
 }

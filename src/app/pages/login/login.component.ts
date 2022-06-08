@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subject, takeUntil } from "rxjs";
+import { catchError, Subject, takeUntil } from "rxjs";
 import { MessageService } from "primeng/api";
 
 @Component({
@@ -12,6 +12,7 @@ import { MessageService } from "primeng/api";
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
+  public disabled = false;
   private destroy$: Subject<any> = new Subject<any>();
 
   constructor(
@@ -27,21 +28,29 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      email: [null, Validators.required, Validators.email],
-      password: [null, Validators.required, Validators.minLength(6)]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]]
     })
   }
 
   public submit(): void {
-    // const formValue = this.form.value;
-    // console.log(formValue)
-    // this.authService.login(formValue.email, formValue.password)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(res => {
-    //     console.log(res);
-    //   })
+    this.disabled = true;
+    const formValue = this.form.value;
+    console.log(formValue)
+    this.authService.login(formValue.email, formValue.password)
+      .pipe(
+        catchError(err => {
+          this.messageService.add({severity: 'error', summary: 'error', detail: err});
+          this.disabled = false;
+          throw err
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(res => {
+        this.disabled = false;
+        this.messageService.add({severity: 'success', summary: 'success', detail: 'Welcome'});
+      })
 
-    this.messageService.add({severity:'error', summary: 'Success', detail: 'Message Content'})
   }
 
   ngOnDestroy(): void {

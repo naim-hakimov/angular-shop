@@ -2,28 +2,19 @@
 
 <div class="login">
   <p-card>
+    <h3 class="login__title">Admin</h3>
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="field">
-        <input type="email"
-               pInputText
-               formControlName="email"
-               placeholder="email"
-               aria-describedby="email"
-               pTooltip="Enter your username"
-               class="ng-invalid ng-dirty">
-        <small id="email" class="block">Username is not available.</small>
+      <div class="login__field">
+        <input pInputText formControlName="email" placeholder="Email">
       </div>
-      <div class="form-control">
-        <p-password
-               formControlName="password"
-               [toggleMask]="true"
-               placeholder="password">
-        </p-password>
+
+      <div class="login__field">
+        <p-password formControlName="password" placeholder="Пароль"></p-password>
       </div>
-      <p-button
-        type="submit"
-        label="Submit">
-      </p-button>
+
+      <div class="login__field">
+        <p-button [disabled]="form.invalid || disabled" type="submit" label="Вход"></p-button>
+      </div>
     </form>
   </p-card>
 

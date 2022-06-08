@@ -7,6 +7,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from "../environments/environment";
+import { MessageService } from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { environment } from "../environments/environment";
     ReactiveFormsModule,
     FormsModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [MessageService]
 })
 export class AppModule {
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ProductService } from "../../services/product.service";
+import { ProductService } from "../../../services/product.service";
 
 // @ts-ignore
 import convert from 'image-file-resize';
 import { AngularFireStorage } from "@angular/fire/compat/storage";
-import { FileService } from "../../services/file.service";
+import { FileService } from "../../../services/file.service";
 import { catchError, finalize, forkJoin, of, switchMap } from "rxjs";
 
 @Component({
@@ -52,7 +52,8 @@ export class CreateComponent implements OnInit {
     })).pipe(
       switchMap(imagesUrl => {
         const product = {...this.form.value, images: imagesUrl}
-        return this.productService.createProduct(product)
+        return of(null)
+        // return this.productService.createProduct(product)
       }),
       catchError(err => {
         this.loading = false;

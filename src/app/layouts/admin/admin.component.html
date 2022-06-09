@@ -1,5 +1,6 @@
+<app-toolbar (openSidbarHandler)="openSideBar($event)"></app-toolbar>
 <div class="admin">
-<!--  <app-side-bar></app-side-bar>-->
+  <app-side-bar *ngIf="isShow"></app-side-bar>
   <div class="container">
     <router-outlet></router-outlet>
   </div>

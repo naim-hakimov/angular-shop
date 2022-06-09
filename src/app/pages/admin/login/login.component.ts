@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from "../../../services/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { catchError, Subject, takeUntil } from "rxjs";
 import { MessageService } from "primeng/api";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
+    private router: Router,
   ) {
   }
 
@@ -35,9 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public submit(): void {
     this.disabled = true;
-    const formValue = this.form.value;
-    console.log(formValue)
-    this.authService.login(formValue.email, formValue.password)
+    const { email, password } = this.form.value;
+    this.authService.login(email, password)
       .pipe(
         catchError(err => {
           this.messageService.add({severity: 'error', summary: 'error', detail: err});
@@ -46,11 +47,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         }),
         takeUntil(this.destroy$),
       )
-      .subscribe(res => {
+      .subscribe(() => {
         this.disabled = false;
         this.messageService.add({severity: 'success', summary: 'success', detail: 'Welcome'});
+        setTimeout(() => this.router.navigate(['admin']), 1000)
       })
-
   }
 
   ngOnDestroy(): void {

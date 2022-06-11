@@ -1,6 +1,31 @@
 @import "../../../assets/scss/colors";
 
-.s-bar {
-  height: 100vh;
+.side-bar {
   padding: 15px;
+  background: $blue;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  width: 250px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    padding: 10px;
+    color: $white;
+    display: flex;
+    column-gap: 10px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover, &_active {
+      color: $blue;
+      background: $white;
+      border-radius: 12px;
+    }
+  }
+
 }

@@ -1,3 +1,28 @@
-<div class="s-bar">
-  <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+<div class="side-bar">
+  <div class="side-bar__list">
+    <div class="side-bar__item"
+         routerLink="/admin"
+         routerLinkActive="side-bar__item_active"
+         [routerLinkActiveOptions]="{exact: true}"
+    >
+        <i class="pi pi-home"></i>
+        <span>Dashboard</span>
+    </div>
+    <div class="side-bar__item" routerLink="/admin/users" routerLinkActive="side-bar__item_active">
+        <i class="pi pi-user-plus"></i>
+        <span>Users</span>
+    </div>
+    <div class="side-bar__item" routerLink="/admin/users" routerLinkActive="side-bar__item_active">
+        <i class="pi pi-user-plus"></i>
+        <span>Users</span>
+    </div>
+    <div class="side-bar__item" routerLink="/admin/users" routerLinkActive="side-bar__item_active">
+        <i class="pi pi-user-plus"></i>
+        <span>Users</span>
+    </div>
+    <div class="side-bar__item" routerLink="/admin/users" routerLinkActive="side-bar__item_active">
+        <i class="pi pi-user-plus"></i>
+        <span>Users</span>
+    </div>
+  </div>
 </div>

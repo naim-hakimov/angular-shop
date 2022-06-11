@@ -4,7 +4,7 @@ import { forkJoin, Observable } from "rxjs";
 // @ts-ignore
 import convert from 'image-file-resize';
 
-import { ConvertInterface } from "../models/convert.interface";
+import { ConvertInterface } from "../_models/convert.interface";
 
 @Injectable()
 export class FileService {

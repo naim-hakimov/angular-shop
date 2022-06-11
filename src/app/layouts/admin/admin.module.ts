@@ -10,12 +10,12 @@ import { PasswordModule } from "primeng/password";
 
 import { AdminRoutingModule } from "./admin.routing.module";
 import { AdminComponent } from './admin.component';
-import { CreateComponent } from "../../pages/admin/create/create.component";
+import { CreateComponent } from "../../components/modals/create/create.component";
 import { LoginComponent } from "../../pages/admin/login/login.component";
 import { SideBarComponent } from "../../components/side-bar/side-bar.component";
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from "../../_services/auth.service";
 import { HomeComponent } from "../../pages/admin/home/home.component";
-import { LocalStorageService } from "../../services/local-storage.service";
+import { LocalStorageService } from "../../_services/local-storage.service";
 import { ToolbarModule } from "primeng/toolbar";
 import { TableModule } from "primeng/table";
 import { FileUploadModule } from "primeng/fileupload";
@@ -27,11 +27,12 @@ import { RadioButtonModule } from "primeng/radiobutton";
 import { InputNumberModule } from "primeng/inputnumber";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { RatingModule } from "primeng/rating";
-import { ProductService } from "../../services/product.service";
+import { ProductService } from "../../_services/product.service";
 import { HttpClientModule } from "@angular/common/http";
 import { PanelMenuModule } from "primeng/panelmenu";
-import { ToolbarComponent } from "../../components/toolbar/toolbar.component";
 import { SplitButtonModule } from "primeng/splitbutton";
+import { FileService } from "../../_services/file.service";
+import { UsersComponent } from "../../pages/admin/users/users.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { SplitButtonModule } from "primeng/splitbutton";
     LoginComponent,
     SideBarComponent,
     HomeComponent,
-    ToolbarComponent
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -65,14 +66,15 @@ import { SplitButtonModule } from "primeng/splitbutton";
     RatingModule,
     HttpClientModule,
     PanelMenuModule,
-    SplitButtonModule
+    SplitButtonModule,
   ],
   providers: [
     AuthService,
     MessageService,
     LocalStorageService,
     ProductService,
-    ConfirmationService
+    ConfirmationService,
+    FileService
   ]
 })
 export class AdminModule { }
